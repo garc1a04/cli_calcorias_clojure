@@ -1,10 +1,10 @@
 (ns cli-calcorias.core
-  (:require [parser.core :refer [interpretar-opcoes]]))
+  (:require [cli-calcorias.cli :as cli]))
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (interpretar-opcoes args))
+  (cli/interpretar-opcoes cli/comandos args))
 
 
 (comment
@@ -23,4 +23,4 @@
 
   ;; consultar saldo
   ;; PADRÃO: calcorias get balance <day or month> 
-  )
+)
