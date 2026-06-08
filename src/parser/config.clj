@@ -3,6 +3,8 @@
    [clojure.tools.cli :refer [parse-opts]]
    [cheshire.core :as json]))
 
+
+;; ATUALIZAR PARA UTILIZAR O DISPATCH DE DADOS
 (def config-cli-options
   [["-a" "--age AGE" "Idade do usuário (opcional)"
     :id :age]
@@ -11,7 +13,6 @@
     :id :sex]])
 
 (defn is-valid? [name weigth]
-  (println)
   (if (empty name)
     {:sucesso false, :detalhe "Failed: Name is empty"}
     (try
