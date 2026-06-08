@@ -4,16 +4,16 @@
 
 (defn is-valid? [name weigth]
   (if (empty name)
-    {:sucesso false, :detalhe "Failed: Name is empty"}
+    (throw (Exception. "Failed: Name is empty"))
     (try
       (Double/parseDouble weigth)
       {:sucesso true}
       (catch Exception e
-        {:sucesso false, :detalhe "Failed: weight is not a number"}))))
+        (throw (Exception. "Failed: weight is not a number"))))))
 
 (defn add-user [arguments options]
   (if (< (count arguments) 2)
-    {:sucesso false, :detalhe "Failed: Invalid arguments. Use: config set <nome> <peso>"}
+    (throw (Exception. "Failed: Invalid arguments. Use: config set <nome> <peso>"))
     (let [valid (is-valid? (first arguments) (second arguments))]
       (when (:sucesso valid)
         (let [data {:name (first arguments)

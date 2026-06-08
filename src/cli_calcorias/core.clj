@@ -4,8 +4,10 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (cli/interpretar-opcoes cli/comandos args))
-
+  (try
+    (cli/interpretar-opcoes cli/comandos args)
+    (catch Exception e
+      (println (.getMessage e)))))
 
 (comment
   ;; Adicionar o usuário
@@ -23,4 +25,4 @@
 
   ;; consultar saldo
   ;; PADRÃO: calcorias get balance <day or month> 
-)
+  )
