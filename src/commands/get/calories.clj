@@ -5,15 +5,17 @@
 
 (def api-url "http://0.0.0.0:3000")
 
-(defn- add-req-food []
+(defn- get-req-calories []
   (let [url (str api-url "/api/calories")
-        result (http-client/get url :as :json)
+        result (http-client/get url {:content-type :json
+                                      :accept :json}
+                                :as :json)
         body (json/parse-string (:body result) true)]
     body))
 
 (defn- filter-results [foods]
-  (map (fn [item] (str (:type item) "," (:name item) "," (:kcal item) "," (:date item))) foods))
+  (map (fn [item] (str (:type item) ", \"" (:name item) "\", " (:kcal item) ", " (:date item))) foods))
 
-(defn add-food [arguments options]
-    (let [body (add-req-food)]
-      (println (str " \nResults: \n\n" (str/join ".\n" (filter-results (:data body)))))))
+(defn get-calories [arguments options]
+    (let [body (get-req-calories)]
+      (println (str " \nResults: \n\ntype, name, kcal, date\n\n" (str/join ".\n" (filter-results (:data body)))))))

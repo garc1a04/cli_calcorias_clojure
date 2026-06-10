@@ -18,6 +18,7 @@
       (when (:sucesso valid)
         (let [data {:name (first arguments)
                     :weight (second arguments)}
-              perfil (conj data options)]
+              perfil (conj data options)] 
+          (println "User sucessfully created.")
           (spit "perfil.json" (json/generate-string perfil))))
       (:detalhe valid))))

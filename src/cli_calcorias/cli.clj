@@ -2,6 +2,8 @@
   (:require [commands.config.add-user :refer [add-user]]
             [commands.config.update-user :refer [update-user]]
             [commands.save.food :refer [add-food]]
+            [commands.get.calories :refer [get-calories]]
+            [commands.get.balance :refer [get-balance]]
             [clojure.tools.cli :refer [parse-opts]]))
 
 (defn interpretar-opcoes [commands arg]
@@ -47,4 +49,18 @@
 
      "exercise" {:summary "Adiciona atividades"
                  :usage    "<name> <minutes>"
-                 :fn      update-user}}}})
+                 :fn      update-user}}}
+   "get"
+   {:summary    "Pega os dados"
+    :subcommands
+    {"calories"    {:summary "Pega a lista de atividade por período (day or month)"
+                    :usage    "<name> <grams>"
+                    :opts [["-p" "--period day" "Dia atual ou mês"
+                            :id :day]]
+                    :fn      get-calories}
+
+     "balance" {:summary "Adiciona atividades"
+                :usage    "<name> <minutes>"
+                :opts [["-p" "--period day" "Dia atual ou mês"
+                        :id :day]]
+                :fn      get-balance}}}})
