@@ -15,7 +15,7 @@
                                   :accept :json}
                                  :as :json)
         body (json/parse-string (:body result) true)]
-    (if (> (count (:foods body)) 0)
+    (if (or  (> (count (:foods body)) 0) (= (:message body) "sucess"))
       body
       (throw (Exception. "Food Not found")))))
 
