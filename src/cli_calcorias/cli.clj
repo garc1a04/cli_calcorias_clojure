@@ -43,13 +43,11 @@
    {:summary    "Retrieves recorded data and history"
     :subcommands
     {"calories"    {:summary "Displays the user's calorie history by period"
-                    :usage    "<name> <grams>"
                     :opts [["-p" "--period day" "Filters by period ('day' or 'month')"
                             :id :period]]
                     :fn      get-calories}
 
      "balance" {:summary "Displays the user's caloric balance (intake vs. expenditure)"
-                :usage    "<name> <minutes>"
                 :opts [["-p" "--period day" "Filters by period ('day' or 'month')"
                         :id :period]]
                 :fn      get-balance}}}
@@ -62,9 +60,8 @@
         comando (get commands cmd-name)
         subcomando (get (:subcommands comando) sub-name)]
     (cond
-      (nil? comando) ((:fn (get commands "help")) commands)
+      (or (nil? comando) (nil? subcomando)) ((:fn (get commands "help")) commands)
       (= cmd-name "help") ((:fn comando) commands)
-      (nil? subcomando) (println "Subcomando inválido para" cmd-name ":" sub-name)
       :else
       (let [rest-args (drop 2 arg)
             opts (parse-opts rest-args (:opts subcomando))]

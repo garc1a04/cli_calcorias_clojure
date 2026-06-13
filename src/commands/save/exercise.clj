@@ -29,7 +29,6 @@
         (throw (Exception. "Failed: minutes is not a number"))))))
 
 (defn- add-user [name weight]
-
   (let [url (str api-url "/api/user")
         payload (json/generate-string {:name name
                                        :weight weight})]

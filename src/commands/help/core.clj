@@ -11,7 +11,7 @@
 (defn- formata-linha-comando [{:keys [cmd subcmd summary usage opts]}]
   (let [partes     (remove str/blank? [cmd subcmd usage])
         cmd-str    (str/join " " partes)
-        opcoes-str (if opts (str "\n      Opções:\n" (formata-opcoes opts)) "")]
+        opcoes-str (if opts (str "\n      Options:\n" (formata-opcoes opts)) "")]
     (str "  " cmd-str "\n      " summary opcoes-str)))
 
 (defn get-help [comandos]

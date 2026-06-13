@@ -311,8 +311,6 @@ A CLI valida os argumentos antes de fazer qualquer requisição à API e exibe m
 | Argumentos insuficientes em `add food` | `Failed: Invalid arguments. Use: config set <name> <grams>` |
 | Perfil não encontrado em `config update` | `Failed: User not create` |
 | Comando desconhecido | `Comando desconhecido: <cmd>` |
-| Subcomando inválido | `Subcomando inválido para <cmd>: <subcmd>` |
-
 ---
 
 ## Dependência
